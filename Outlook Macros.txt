@@ -1,0 +1,31 @@
+Sub OpenPO()
+
+Dim PO As String
+Dim Folder As String
+Dim OutMail As Object
+Dim xlApp As Object
+
+PO = Trim(InputBox("Open PO..."))
+Folder = "C:\Users\Nicole\Dropbox (COMPANY)\Purchases\Purchase Orders\"
+
+If PO = "" Or Not (IsNumeric(PO)) Then
+    Exit Sub
+End If
+
+On Error Resume Next
+
+Set xlApp = CreateObject("Excel.Application")
+    xlApp.Application.Visible = True
+    xlApp.Workbooks.Open Folder & PO & ".xlsx"
+
+End Sub
+
+
+
+
+
+Sub ScheduleReview()
+   Set myFolder = Session.GetDefaultFolder(olFolderInbox)
+   Set myItem = myFolder.Items.Add("IPM.Note.Schedule Review")
+   myItem.Display
+End Sub
